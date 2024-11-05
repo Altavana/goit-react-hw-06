@@ -1,20 +1,15 @@
 import styles from "./ContactList.module.css";
 import Contact from "../Contact/Contact";
-import { useMemo } from "react";
 import { useSelector } from "react-redux";
 
 export default function ContactList({ onDeleteContact }) {
-  const items = useSelector((state) => state.contacts.items);
-  const filters = useSelector((state) => state.filters.name);
-  const filteredContacts = useMemo(
-    () =>
-      items.filter((contactItem) => {
-        return contactItem.name
-          .toLowerCase()
-          .includes(filters.toLowerCase().trim());
-      }),
-    [items, filters]
-  );
+  const selectContacts = useSelector((state) => state.contacts.items);
+  const selectNameFilter = useSelector((state) => state.filters.name);
+  const filteredContacts = selectContacts.filter((contactItem) => {
+    return contactItem.name
+      .toLowerCase()
+      .includes(selectNameFilter.toLowerCase().trim());
+  });
   return (
     <ul className={styles.listContacts}>
       {filteredContacts.map((item) => {

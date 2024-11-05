@@ -16,7 +16,6 @@ export default function SearchBox() {
         onChange={(event) => {
           dispatch(changeFilter(event.target.value));
         }}
-        // onChange={(evt) => searchFilter(evt.target.value)}
         placeholder="Name or Surname"
       ></input>
     </div>
