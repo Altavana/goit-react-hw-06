@@ -2,7 +2,7 @@ import styles from "./ContactList.module.css";
 import Contact from "../Contact/Contact";
 import { useSelector } from "react-redux";
 
-export default function ContactList({ onDeleteContact }) {
+export default function ContactList() {
   const selectContacts = useSelector((state) => state.contacts.items);
   const selectNameFilter = useSelector((state) => state.filters.name);
   const filteredContacts = selectContacts.filter((contactItem) => {
@@ -15,12 +15,7 @@ export default function ContactList({ onDeleteContact }) {
       {filteredContacts.map((item) => {
         return (
           <li key={item.id}>
-            <Contact
-              name={item.name}
-              number={item.number}
-              id={item.id}
-              onDeleteContact={onDeleteContact}
-            />
+            <Contact name={item.name} number={item.number} id={item.id} />
           </li>
         );
       })}

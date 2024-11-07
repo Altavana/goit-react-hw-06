@@ -1,10 +1,16 @@
 import styles from "./Contact.module.css";
 import { IoPerson } from "react-icons/io5";
 import { BsFillTelephoneFill } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { deleteContact } from "../../redux/contactsSlice.js";
 
 const Contact = (props) => {
-  const { id, name, number, onDeleteContact } = props;
-
+  const { id, name, number } = props;
+  const dispatch = useDispatch();
+  const onDeleteContact = (profileId) => {
+    const action = deleteContact(profileId);
+    dispatch(action);
+  };
   return (
     <div className={styles.cardContact}>
       <div className={styles.cardInfo}>
